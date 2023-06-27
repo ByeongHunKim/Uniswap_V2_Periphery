@@ -3,22 +3,21 @@ import { getDatetimeString } from '../utils/timeUtils';
 async function main() {
   const currentTimestampInSeconds = Math.round(Date.now());
   const contractCreatedTime = getDatetimeString(currentTimestampInSeconds)
-  const unlockTime = currentTimestampInSeconds + 60;
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime);
+  const Weth = await ethers.getContractFactory("WETH9");
+  const weth = await Weth.deploy();
 
-  await lock.deployed();
+  await weth.deployed();
 
   console.log(
-    `${lock.address} contract is deployed at ${contractCreatedTime}`
+    `${weth.address} contract is deployed at ${contractCreatedTime}`
   );
   console.log(`
  click this link if you deploy contract on Ethereum Sepolia Testnet
- https://sepolia.etherscan.io/address/${lock.address} \n
+ https://sepolia.etherscan.io/address/${weth.address} \n
  click this link if you deploy contract on Bianace Smart Chain Testnet
- https://testnet.bscscan.com/address/${lock.address} \n
+ https://testnet.bscscan.com/address/${weth.address} \n
  click this link if you deploy contract on Polygon Mumbai Testnet
- https://mumbai.polygonscan.com/address/${lock.address} \n
+ https://mumbai.polygonscan.com/address/${weth.address} \n
   `)
 }
 
