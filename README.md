@@ -1,69 +1,51 @@
-# typescript-hardhat-boilerplate
+<p align="center">
+    <h1 align="center">
+        Uniswap V2
+    </h1>
+    <p align="center">Periphery Contracts</p>
+</p>
 
-# 목차
 
-[1.reference](#1.-reference)
+---
+# Deployed contracts
+|            | Mumbai                                                                                             |
+|------------|----------------------------------------------------------------------------------------------------|
+| WETH       | [0xAD86...B54D](https://mumbai.polygonscan.com/address/0xAD862fE04f939673961710860e97DD829272B54D) |
+| Router     | [0x7196...99Bd](https://mumbai.polygonscan.com/address/0x7196fF881495e2B5e743506c42743070e5C799Bd) |
+| TestToken1 | [0x315B...D061](https://mumbai.polygonscan.com/address/0x315B325FB71880E12c944d226DB08C9f5070D061) |
+| TestToken2 | [0x129C...B666](https://mumbai.polygonscan.com/address/0x129Cc0bA7667945A55802EA9de362aFa18B1B666) |
+---
 
-[2.installation](#2.-installation)
-
-[3.file directory](#3.-file-directory)
-
-[4.testing contract](#4.-testing-contract)
-
-[5.environment variables](#5.-environment-variables)
-
-[6.deploying contract](#6.-deploying-contract)
-
-## 1. reference
-
-## [Hardhat docs](https://hardhat.org/hardhat-runner/docs/getting-started#overview)
-## [Alchemy Ethereum](https://www.alchemy.com/ethereum)
-## [Alchemy Polygon](https://www.alchemy.com/polygon)
-
-## 2. installation
+## 1. installation
 - node v16.17.1
 - npm 8.15.0
 ```shell
 npm install
 ```
 
-### 2.1 initial setting
-```bash
-npx hardhat init
-npm install --save @openzeppelin/contracts
-npm install dovenv
-```
-
-## 3. file directory
-### 3.1 contracts/
-- 스마트 컨트랙트 소스코드 파일 보관
-### 3.2 scripts/
-- 스마트 컨트랙트를 배포할 때 실행하는 스크립트코드 파일 보관
-### 3.3 test/
-- 스마트 컨트랙트를 테스트하는 소스코드 파일 보관
-### 3.4 hardhat.config.ts
-- 이더리움 테스트넷 또는 메인넷 등 스마트 컨트랙트를 배포할 네트워크를 설정할 수 있는 config 파일
-## 4. testing contract
-- `test/` 폴더에 있는 파일 실행
-```shell
-npx hardhat test test/Lock.ts
-```
-
-## 5. environment variables
+## 2. environment variables
 - `$ touch .env`
-- 또는 rename `.env.example` to `.env`
+- or rename `.env.example` to `.env`
 ```bash
 ALCHEMY_MUMBAI_API_KEY=
 ALCHEMY_SEPOLIA_API_KEY=
 PRIVATE_KEY=
 ```
 
-## 6. deploying contract
-- `scripts/` 폴더에 있는 파일 실행
-- 로컬에 배포 후 테스트 하는 방법
-  - `$ npx hardhat node` 
-  - `$ npx hardhat run scripts/deploy.ts`
+## 3. deploying contract
 ```shell
-# sepolia bscMainnet bscTestnet
-npx hardhat run scripts/deploy.ts --network mumbai
+# deploy WETH contract 
+npx hardhat run scripts/deployWeth.ts --network mumbai
+
+# deploy Router contract
+npx hardhat run scripts/deployRouter.ts --network mumbai
+
+# deploy Test Token contract
+npx hardhat run scripts/deployTestToken.ts --network mumbai
+```
+
+## 3.1 deploying contract in local node
+```shell
+npx hardhat node
+npx hardhat run scripts/
 ```
